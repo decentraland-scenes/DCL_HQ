@@ -3,6 +3,9 @@ import utils from '../node_modules/decentraland-ecs-utils/index'
 // import { invisibleMaterial } from './museumItems'
 
 /////// GET DATA FROM SERVER
+const DATA_NOT_AVAILABLE = "data not available"
+const NOTHING = ""
+
 
 export let awsServer = 'https://genesis-plaza.s3.us-east-2.amazonaws.com/'
 
@@ -292,10 +295,11 @@ export function updateTradeCentrer(data: MarketData) {
     },
     leftPannel
   )
-
+  
   let lowerPanel3Value = new StockData(
     StockDataTypes.BIGVALUE,
-    data.coins.MANAETH.toString().slice(0, 10) + ' ETH',
+    (data.coins.MANAETH != 0) ? 
+    data.coins.MANAETH.toString().slice(0, 10) + ' ETH' : DATA_NOT_AVAILABLE,
     {
       position: new Vector3(0, 2.4, 0),
     },
@@ -314,7 +318,8 @@ export function updateTradeCentrer(data: MarketData) {
 
   let lowerPanel4Value = new StockData(
     StockDataTypes.BIGVALUE,
-    data.coins.MANAUSD.toString().slice(0, 8) + ' USD',
+    (data.coins.MANAUSD != 0) ?
+    data.coins.MANAUSD.toString().slice(0, 8) + ' USD': NOTHING,
     {
       position: new Vector3(0, 2, 0),
     },
@@ -333,7 +338,8 @@ export function updateTradeCentrer(data: MarketData) {
 
   let lowerPanel1Value = new StockData(
     StockDataTypes.BIGVALUE,
-    data.coins.BTCUSDT.toString() + ' USD',
+    (data.coins.BTCUSDT != 0) ?
+    data.coins.BTCUSDT.toString() + ' USD' : DATA_NOT_AVAILABLE,
     {
       position: new Vector3(0, 0.7, 0),
     },
@@ -352,7 +358,8 @@ export function updateTradeCentrer(data: MarketData) {
 
   let lowerPanel2Value = new StockData(
     StockDataTypes.BIGVALUE,
-    data.coins.ETHUSDT.toString() + ' USD',
+    (data.coins.ETHUSDT != 0) ?
+    data.coins.ETHUSDT.toString() + ' USD' : DATA_NOT_AVAILABLE,
     {
       position: new Vector3(0, -0.9, 0),
     },
@@ -381,7 +388,8 @@ export function updateTradeCentrer(data: MarketData) {
 
   let lowerPanel5Value = new StockData(
     StockDataTypes.BIGVALUE,
-    totalTokenSalesWeek.toString() + ' tokens',
+    (totalTokenSalesWeek != 0) ?
+    totalTokenSalesWeek.toString() + ' tokens' : DATA_NOT_AVAILABLE, 
     {
       position: new Vector3(0, 1.8, 0),
     },
@@ -413,7 +421,8 @@ export function updateTradeCentrer(data: MarketData) {
 
   let lowerPanel6Value = new StockData(
     StockDataTypes.BIGVALUE,
-    roundedTotalTokenManaWeek.toString() + ' USD',
+    (roundedTotalTokenManaWeek != 0) ?
+    roundedTotalTokenManaWeek.toString() + ' USD' : DATA_NOT_AVAILABLE,
     {
       position: new Vector3(0, -0.3, 0),
     },
@@ -801,7 +810,8 @@ export function updateTradeCentrer(data: MarketData) {
 
   let midPanel5Value1 = new StockData(
     StockDataTypes.VALUE,
-    Math.floor(data.totalMANALandAndEstateYesterday).toString(),
+    (data.totalMANALandAndEstateYesterday != 0) ?
+    Math.floor(data.totalMANALandAndEstateYesterday).toString(): DATA_NOT_AVAILABLE.slice(0, 4),
     {
       position: new Vector3(0.7, 1.2, 0),
     },
@@ -810,7 +820,8 @@ export function updateTradeCentrer(data: MarketData) {
 
   let midPanel5Value2 = new StockData(
     StockDataTypes.VALUE,
-    Math.floor(data.totalMANALandAndEstateWeek).toString(),
+    (data.totalMANALandAndEstateWeek != 0) ?
+    Math.floor(data.totalMANALandAndEstateWeek).toString(): DATA_NOT_AVAILABLE.slice(4,8),
     {
       position: new Vector3(0.7, 0, 0),
     },
@@ -819,7 +830,8 @@ export function updateTradeCentrer(data: MarketData) {
 
   let midPanel5Value3 = new StockData(
     StockDataTypes.VALUE,
-    Math.floor(data.totalMANALandAndEstateMonth).toString(),
+    (data.totalMANALandAndEstateYesterday != 0) ?
+    Math.floor(data.totalMANALandAndEstateMonth).toString(): DATA_NOT_AVAILABLE.slice(8, 18),
     {
       position: new Vector3(0.7, -1.2, 0),
     },
@@ -1321,7 +1333,8 @@ export function updateTradeCentrer(data: MarketData) {
 
   let topPanel5Value1 = new StockData(
     StockDataTypes.VALUE,
-    data.uncommonWearableMonthSales.toString(),
+    (data.uncommonWearableMonthSales != 0) ?
+    data.uncommonWearableMonthSales.toString(): DATA_NOT_AVAILABLE.slice(0, 4),
     {
       position: new Vector3(1.3, 1, 0),
     },
@@ -1330,7 +1343,8 @@ export function updateTradeCentrer(data: MarketData) {
 
   let topPanel5Value2 = new StockData(
     StockDataTypes.VALUE,
-    data.rareWearableMonthSales.toString(),
+    (data.rareWearableMonthSales != 0) ?
+    data.rareWearableMonthSales.toString(): NOTHING,
     {
       position: new Vector3(1.3, 0.3, 0),
     },
@@ -1339,7 +1353,8 @@ export function updateTradeCentrer(data: MarketData) {
 
   let topPanel5Value3 = new StockData(
     StockDataTypes.VALUE,
-    data.epicWearableMonthSales.toString(),
+    (data.epicWearableMonthSales != 0) ?
+    data.epicWearableMonthSales.toString(): DATA_NOT_AVAILABLE.slice(5, 8),
     {
       position: new Vector3(1.3, -0.4, 0),
     },
@@ -1348,7 +1363,8 @@ export function updateTradeCentrer(data: MarketData) {
 
   let topPanel5Value4 = new StockData(
     StockDataTypes.VALUE,
-    data.legendaryWearableMonthSales.toString(),
+    (data.legendaryWearableMonthSales != 0) ?
+    data.legendaryWearableMonthSales.toString(): NOTHING,
     {
       position: new Vector3(1.3, -1.1, 0),
     },
@@ -1357,7 +1373,8 @@ export function updateTradeCentrer(data: MarketData) {
 
   let topPanel5Value5 = new StockData(
     StockDataTypes.VALUE,
-    data.mythicWearableMonthSales.toString(),
+    (data.mythicWearableMonthSales != 0) ?
+    data.mythicWearableMonthSales.toString(): DATA_NOT_AVAILABLE.slice(8, 18),
     {
       position: new Vector3(1.3, -1.8, 0),
     },
@@ -2248,4 +2265,10 @@ export function updateTradeCentrer(data: MarketData) {
   //     )
   //   )
   //   engine.addEntity(marketRoofTrigger)
+}
+
+function IsDataAvaliable(data: number){
+  if(data == 0 || data == undefined || data == null){
+    return false;
+  }
 }
