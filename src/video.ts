@@ -34,17 +34,15 @@ export class VideoScreen extends Entity {
     triggerEntity.addComponent(
       new utils.TriggerComponent(
         triggerBox, //shape
-        0, //layer
-        0, //triggeredByLayer
-        null, //onTriggerEnter
-        null, //onTriggerExit
-        () => {
-          this.activate()
-        },
-        () => {
-          this.deactivate()
-        }, //onCameraExit
-        false
+        {
+          onCameraEnter: () => {
+            this.activate()
+          },
+          
+          onCameraExit: () => {
+            this.deactivate()
+          }, 
+        }
       )
     )
     engine.addEntity(triggerEntity)

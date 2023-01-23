@@ -33,17 +33,13 @@ export class Platform extends Entity {
     triggerEntity.addComponent(
       new utils.TriggerComponent(
         triggerBox, //shape
-        0, //layer
-        0, //triggeredByLayer
-        null, //onTriggerEnter
-        null, //onTriggerExit
-        () => {
-          log('triggered platform')
-          //sceneMessageBus.emit(messageBusHandle, {})
-        },
-        null, //onCameraExit
-        false //true
-      )
+        {
+          onCameraEnter: 
+          () => {
+            log('triggered platform')
+            //sceneMessageBus.emit(messageBusHandle, {})
+          },
+      })
     )
     engine.addEntity(triggerEntity)
   }
